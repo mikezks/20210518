@@ -8,28 +8,26 @@
     </a>
   </div>
   <ul class="nav">
-    <li>
+    <li routerLinkActive="active">
       <a routerLink="home">
         <i class="ti-home"></i>
         <p>Home</p>
       </a>
     </li>
 
-    <li>
+    <li routerLinkActive="active">
       <a routerLink="flight-booking/flight-search">
         <i class="ti-arrow-top-right"></i>
         <p>Flights</p>
       </a>
     </li>
 
-    <!--
-    <li>
-        <a routerLink="passenger-search">
+    <li routerLinkActive="active">
+        <a routerLink="mf-passenger">
             <i class="ti-user"></i>
-            <p>Passengers</p>
+            <p>MF Passenger</p>
         </a>
     </li>
--->
 
     <li routerLinkActive="active">
       <a [routerLink]="[{outlets: { aux: 'basket'  }}]">

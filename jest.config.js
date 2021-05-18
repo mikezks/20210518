@@ -7,5 +7,9 @@ module.exports = {
     '<rootDir>/apps/flight-admin',
     '<rootDir>/apps/dashboard',
     '<rootDir>/apps/external',
+    '<rootDir>/libs/passenger/domain',
+    '<rootDir>/apps/passenger',
+    '<rootDir>/libs/passenger/feature-search',
+    '<rootDir>/libs/passenger/feature-edit',
   ],
 };

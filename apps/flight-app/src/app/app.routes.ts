@@ -22,5 +22,3 @@ export const APP_ROUTES: Routes = [
     redirectTo: 'home'
   }
 ];
-
-export const APP_EXTRA_OPTIONS: ExtraOptions = { relativeLinkResolution: 'legacy' };

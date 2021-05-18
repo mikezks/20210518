@@ -69,6 +69,22 @@
     },
     "external": {
       "tags": ["domain:external"]
+    },
+    "passenger-domain": {
+      "tags": ["domain:passenger", "type:domain-logic"]
+    },
+    "passenger": {
+      "tags": ["domain:passenger", "type:app"]
+    },
+    "passenger-e2e": {
+      "tags": [],
+      "implicitDependencies": ["passenger"]
+    },
+    "passenger-feature-search": {
+      "tags": ["domain:passenger", "type:feature"]
+    },
+    "passenger-feature-edit": {
+      "tags": ["domain:passenger", "type:feature"]
     }
   }
 }

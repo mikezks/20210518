@@ -30,6 +30,13 @@
               {
                 "sourceTag": "domain:external",
                 "onlyDependOnLibsWithTags": ["domain:external", "domain:shared"]
+              },
+              {
+                "sourceTag": "domain:passenger",
+                "onlyDependOnLibsWithTags": [
+                  "domain:passenger",
+                  "domain:shared"
+                ]
               }
             ]
           }

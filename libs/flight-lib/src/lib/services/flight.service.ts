@@ -13,13 +13,14 @@ export class FlightService {
   flights: Flight[] = [];
   baseUrl = `http://www.angular.at/api`;
   // baseUrl = `http://localhost:3000`;
-  
+
   reqDelay = 1000;
 
   constructor(private http: HttpClient) {
   }
 
   load(from: string, to: string, urgent: boolean): void {
+    // Trainer was here! :)
     this.find(from, to, urgent)
       .subscribe(
         flights => {
