@@ -30,6 +30,22 @@
               {
                 "sourceTag": "domain:external",
                 "onlyDependOnLibsWithTags": ["domain:external", "domain:shared"]
+              },
+              {
+                "sourceTag": "domain:luggage",
+                "onlyDependOnLibsWithTags": ["domain:luggage", "domain:shared"]
+              },
+              {
+                "sourceTag": "type:feature",
+                "onlyDependOnLibsWithTags": ["type:feature", "type:domain-logic", "type:ui", "type:utils"]
+              },
+              {
+                "sourceTag": "type:ui",
+                "onlyDependOnLibsWithTags": ["type:ui", "type:utils"]
+              },
+              {
+                "sourceTag": "type:app",
+                "onlyDependOnLibsWithTags": ["type:feature"]
               }
             ]
           }

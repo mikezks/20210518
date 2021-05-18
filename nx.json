@@ -50,7 +50,7 @@
       "implicitDependencies": ["external"]
     },
     "flight-app": {
-      "tags": ["domain:flights"]
+      "tags": ["domain:flights",  "type:app"]
     },
     "flight-admin": {
       "tags": ["domain:flights"]
@@ -69,6 +69,19 @@
     },
     "external": {
       "tags": ["domain:external"]
+    },
+    "luggage-domain": {
+      "tags": ["domain:luggage", "type:domain-logic"]
+    },
+    "luggage": {
+      "tags": ["domain:luggage", "type:app"]
+    },
+    "luggage-e2e": {
+      "tags": [],
+      "implicitDependencies": ["luggage"]
+    },
+    "luggage-feature-checkin": {
+      "tags": ["domain:luggage", "type:feature"]
     }
   }
 }
