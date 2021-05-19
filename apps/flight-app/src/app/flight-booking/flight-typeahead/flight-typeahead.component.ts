@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Flight } from '@flight-workspace/flight-lib';
-import { Observable, Subject } from 'rxjs';
+import { iif, Observable, of, Subject } from 'rxjs';
 import { debounceTime, delay, distinctUntilChanged, filter, pairwise, switchMap, takeUntil, tap } from 'rxjs/operators';
 
 @Component({
@@ -24,14 +24,20 @@ export class FlightTypeaheadComponent implements OnInit {
   ngOnInit(): void {
     // Stream 1: Trigger
     this.flights$ = this.control.valueChanges.pipe(
-      filter(city => city.length > 2),
+      // filter(city => city.length > 2),
       debounceTime(300),
       distinctUntilChanged(),
-      tap(() => this.loading = true),
-      switchMap(city => this.load(city)),
-      delay(1000),
-      tap(() => this.loading = false),
-      takeUntil(this.destroy$)
+      switchMap(city =>
+        iif(
+          () => city.length > 2,
+          of(city).pipe(
+            tap(() => this.loading = true),
+            switchMap(city => this.load(city)),
+            tap(() => this.loading = false)
+          ),
+          of([])
+        )
+      )
     );
   }
 
