@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Flight } from '@flight-workspace/flight-lib';
-import { Observable } from 'rxjs';
-import { debounceTime, delay, distinctUntilChanged, filter, pairwise, switchMap, tap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, delay, distinctUntilChanged, filter, pairwise, switchMap, takeUntil, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'flight-workspace-flight-typeahead',
@@ -15,8 +15,11 @@ export class FlightTypeaheadComponent implements OnInit {
   // Stream Result
   flights$: Observable<Flight[]>;
   loading: boolean;
+  destroy$ = new Subject<void>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    setTimeout(() => this.destroy$.next(), 5000);
+  }
 
   ngOnInit(): void {
     // Stream 1: Trigger
@@ -27,7 +30,8 @@ export class FlightTypeaheadComponent implements OnInit {
       tap(() => this.loading = true),
       switchMap(city => this.load(city)),
       delay(1000),
-      tap(() => this.loading = false)
+      tap(() => this.loading = false),
+      takeUntil(this.destroy$)
     );
   }
 
