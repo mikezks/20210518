@@ -42,7 +42,7 @@
       "prefix": "flight-workspace",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/apps/flight-app",
             "index": "apps/flight-app/src/index.html",
@@ -67,7 +67,9 @@
             "sourceMap": true,
             "optimization": false,
             "namedChunks": true,
-            "aot": false
+            "aot": false,
+            "extraWebpackConfig": "apps/flight-app/webpack.config.js",
+            "commonChunk": false
           },
           "configurations": {
             "production": {
@@ -95,18 +97,22 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "extraWebpackConfig": "apps/flight-app/webpack.prod.config.js"
             }
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "options": {
-            "browserTarget": "flight-app:build"
+            "browserTarget": "flight-app:build",
+            "extraWebpackConfig": "apps/flight-app/webpack.config.js",
+            "port": 4200
           },
           "configurations": {
             "production": {
-              "browserTarget": "flight-app:build:production"
+              "browserTarget": "flight-app:build:production",
+              "extraWebpackConfig": "apps/flight-app/webpack.prod.config.js"
             }
           }
         },
@@ -126,13 +132,14 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "ngx-build-plus:karma",
           "outputs": [
             "coverage/apps/flight-app"
           ],
           "options": {
             "jestConfig": "apps/flight-app/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "extraWebpackConfig": "apps/flight-app/webpack.config.js"
           }
         }
       }
