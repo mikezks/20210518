@@ -11,3 +11,21 @@ export const selectFlights = createSelector(
   // Projector
   flightBookingState => flightBookingState.flights
 );
+
+/* interface Booking {
+  flightId: number;
+  passengerId: number;
+}
+
+export const myFlights = createSelector(
+  // Selectors
+  selectFlights,
+  selectPassengers,
+  selectBookings,
+  selectActiveUser,
+  // Projector
+  (flights, passengers, booking: Booking[], user) => {
+    const myPassenger = passengers.find(p => p.id === user.passengerId);
+    const myBookings = booking.filter(b => b.passengerId === myPassenger.id);
+  }
+); */

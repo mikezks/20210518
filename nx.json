@@ -50,7 +50,7 @@
       "implicitDependencies": ["external"]
     },
     "flight-app": {
-      "tags": ["domain:flights",  "type:app"]
+      "tags": ["domain:flights"]
     },
     "flight-admin": {
       "tags": ["domain:flights"]
