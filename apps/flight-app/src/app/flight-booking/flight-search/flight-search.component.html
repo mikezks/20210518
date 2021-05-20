@@ -31,12 +31,12 @@
             Search
           </button>
 
-          <button *ngIf="flights.length > 0" class="btn btn-default"
-            (click)="delay()">
+          <button *ngIf="flights.length" class="btn btn-default"
+            (click)="delay(flights[0])">
             Delay 1st Flight
           </button>
 
-          <div *ngIf="flights.length > 0">
+          <div *ngIf="flights.length">
             {{flights.length}} flights found!
           </div>
 
