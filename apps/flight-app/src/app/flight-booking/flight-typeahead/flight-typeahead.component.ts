@@ -32,6 +32,7 @@ export class FlightTypeaheadComponent implements OnInit {
           () => city.length > 2,
           of(city).pipe(
             tap(() => this.loading = true),
+            // Stream 2: Data Provider
             switchMap(city => this.load(city)),
             tap(() => this.loading = false)
           ),

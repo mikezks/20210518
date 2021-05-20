@@ -1,7 +1,8 @@
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
 import {Flight} from '../models/flight';
 
 
@@ -13,8 +14,9 @@ export class FlightService {
   flights: Flight[] = [];
   baseUrl = `http://www.angular.at/api`;
   // baseUrl = `http://localhost:3000`;
-  
+
   reqDelay = 1000;
+  flightCount$ = new BehaviorSubject<number>(0);
 
   constructor(private http: HttpClient) {
   }
@@ -49,7 +51,9 @@ export class FlightService {
       .set('Accept', 'application/json');
 
     const reqObj = {params, headers};
-    return this.http.get<Flight[]>(url, reqObj);
+    return this.http.get<Flight[]>(url, reqObj).pipe(
+      tap(flights => this.flightCount$.next(flights.length))
+    );
     // return of(flights).pipe(delay(this.reqDelay))
 
   }
